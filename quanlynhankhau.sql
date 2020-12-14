@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 08, 2019 lúc 04:03 PM
--- Phiên bản máy phục vụ: 10.4.8-MariaDB
--- Phiên bản PHP: 7.3.11
+-- Thời gian đã tạo: Th12 14, 2020 lúc 01:17 AM
+-- Phiên bản máy phục vụ: 10.4.14-MariaDB
+-- Phiên bản PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `quan_ly_nhan_khau`
+-- Cơ sở dữ liệu: `quanlynhanhkhau`
 --
 
 -- --------------------------------------------------------
@@ -53,7 +52,8 @@ INSERT INTO `chung_minh_thu` (`ID`, `idNhanKhau`, `soCMT`, `ngayCap`, `noiCap`) 
 (22, 35, '100000000001', NULL, NULL),
 (23, 36, '100000000002', NULL, NULL),
 (24, 37, '000000000010', NULL, NULL),
-(25, 38, '000000000011', NULL, NULL);
+(25, 38, '000000000011', NULL, NULL),
+(26, 39, '033300004931', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,6 +125,34 @@ INSERT INTO `gia_dinh` (`ID`, `idNhanKhau`, `hoTen`, `namSinh`, `gioiTinh`, `qua
 (31, 38, 'Lý Văn Công', '1945-06-04', 'Nam', 'Chồng', 'Bộ đội về hưu', 'Số 5 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội'),
 (32, 38, 'Lý Thành Nam', '1968-06-12', 'Nam', 'Con trai', 'Công nhân', 'Số 89, ngõ 98 Trường Chinh, Hà Nội'),
 (33, 38, 'Lý Thu Thủy', '1971-03-05', 'Nữ', 'Con gái', 'Nhân viên văn phòng', 'Số 3, ngõ 568 Đường Láng, Hà Nội');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hopdong`
+--
+
+CREATE TABLE `hopdong` (
+  `idhopdong` int(11) NOT NULL,
+  `tenkhachhang` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sodienthoai` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `diachi` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `soCMT` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batdau` datetime NOT NULL,
+  `ketthuc` datetime NOT NULL,
+  `chiphi` int(11) NOT NULL,
+  `datcoc` int(11) NOT NULL,
+  `idphong` int(11) NOT NULL,
+  `trangthai` tinyint(1) NOT NULL,
+  `thanhtoan` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hopdong`
+--
+
+INSERT INTO `hopdong` (`idhopdong`, `tenkhachhang`, `sodienthoai`, `diachi`, `soCMT`, `batdau`, `ketthuc`, `chiphi`, `datcoc`, `idphong`, `trangthai`, `thanhtoan`) VALUES
+(1, 'quyet', '0828234613', NULL, '063467145', '2020-11-11 15:32:45', '2020-11-12 15:32:45', 1000, 500, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -228,7 +256,31 @@ INSERT INTO `nhan_khau` (`ID`, `maNhanKhau`, `hoTen`, `bietDanh`, `namSinh`, `gi
 (35, NULL, 'Trần Trung Kiên', '', '2008-12-25', 'Nam', NULL, 'Hà Nội', 'Kinh', 'Không', 'Việt Nam', '', 'Số 4 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', 'Số 4 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', '6/12 chính quy', 'Không', 'Không', 'Không', 'Học sinh', 'Trường THCS Chu Văn An', NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-08', 1, NULL, NULL, NULL, NULL),
 (36, NULL, 'Trần Thúy Ngọc', '', '2013-01-15', 'Nữ', NULL, 'Hà Nội', 'Kinh', 'Không', 'Việt Nam', '', 'Số 4 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', 'Số 4 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', '1/12 chính quy', 'Không', 'Không', 'Không', 'Học sinh', 'Trường tiểu học Chu Văn An', NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-08', 1, NULL, NULL, NULL, NULL),
 (37, NULL, 'Lý Văn Công', '', '1945-06-04', 'Nam', NULL, 'Hà Nội', 'Kinh', 'Không', 'Việt Nam', '', 'Số 5 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', 'Số 5 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', '10/12 chính quy', 'Không', 'Không', 'Không', 'Về hưu', 'Không', NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-08', 1, NULL, NULL, NULL, NULL),
-(38, NULL, 'Bùi Thị Hà', '', '1948-02-03', 'Nữ', NULL, 'Hải Phòng', 'Kinh', 'Không', 'Việt Nam', '', 'Số 5 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', 'Số 5 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', '10/12', 'Không', 'Không', 'Không', 'Nội trợ', 'Tại nhà', NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-08', 1, NULL, NULL, NULL, NULL);
+(38, NULL, 'Bùi Thị Hà', '', '1948-02-03', 'Nữ', NULL, 'Hải Phòng', 'Kinh', 'Không', 'Việt Nam', '', 'Số 5 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', 'Số 5 Tạ Quang Bửu, quận Hai Bà Trưng, Hà Nội', '10/12', 'Không', 'Không', 'Không', 'Nội trợ', 'Tại nhà', NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-08', 1, NULL, NULL, NULL, NULL),
+(39, NULL, 'Phạm Thị Hương Quỳnh', '', '2020-11-09', 'Nam', NULL, 'Bình Minh', 'Kinh', 'Không', 'Việt Nam', '100', 'Bình Minh', 'Hà Nội', '12/12', 'Sinh viên', 'Kinh', 'Kém', 'Sinh viên', 'Đại học Bách Khoa Hà Nội', NULL, NULL, NULL, NULL, NULL, NULL, '2020-11-25', 1, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `phong`
+--
+
+CREATE TABLE `phong` (
+  `idphong` int(11) NOT NULL,
+  `ten` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vitri` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dientich` int(11) NOT NULL,
+  `trangthai` tinyint(1) NOT NULL,
+  `mota` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `phong`
+--
+
+INSERT INTO `phong` (`idphong`, `ten`, `vitri`, `dientich`, `trangthai`, `mota`) VALUES
+(1, 'hoi nghi', 'tang1', 300, 1, NULL),
+(2, 'hop', 'tang 2', 40, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -293,6 +345,29 @@ INSERT INTO `thanh_vien_cua_ho` (`idNhanKhau`, `idHoKhau`, `quanHeVoiChuHo`) VAL
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `thietbi`
+--
+
+CREATE TABLE `thietbi` (
+  `idthietbi` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenthietbi` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `khadung` int(11) NOT NULL,
+  `mota` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thietbi`
+--
+
+INSERT INTO `thietbi` (`idthietbi`, `tenthietbi`, `soluong`, `khadung`, `mota`) VALUES
+('BAN01', 'Bàn đứng', 15, 10, ''),
+('LOA01', 'loa đứng', 10, 9, NULL),
+('LOA02', 'loa treo tường', 10, 4, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tieu_su`
 --
 
@@ -340,7 +415,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `userName`, `passwd`) VALUES
-(1, 'admin', '1');
+(1, 'admin', '1'),
+(2, 'canbo', '1');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -370,6 +446,13 @@ ALTER TABLE `gia_dinh`
   ADD KEY `idNhanKhau` (`idNhanKhau`);
 
 --
+-- Chỉ mục cho bảng `hopdong`
+--
+ALTER TABLE `hopdong`
+  ADD PRIMARY KEY (`idhopdong`),
+  ADD KEY `idphong` (`idphong`);
+
+--
 -- Chỉ mục cho bảng `ho_khau`
 --
 ALTER TABLE `ho_khau`
@@ -395,6 +478,12 @@ ALTER TABLE `nhan_khau`
 ALTER TABLE `nhan_khau` ADD FULLTEXT KEY `hoTen` (`hoTen`,`bietDanh`);
 
 --
+-- Chỉ mục cho bảng `phong`
+--
+ALTER TABLE `phong`
+  ADD PRIMARY KEY (`idphong`);
+
+--
 -- Chỉ mục cho bảng `tam_tru`
 --
 ALTER TABLE `tam_tru`
@@ -414,6 +503,12 @@ ALTER TABLE `tam_vang`
 ALTER TABLE `thanh_vien_cua_ho`
   ADD PRIMARY KEY (`idNhanKhau`,`idHoKhau`),
   ADD KEY `idHoKhau` (`idHoKhau`);
+
+--
+-- Chỉ mục cho bảng `thietbi`
+--
+ALTER TABLE `thietbi`
+  ADD PRIMARY KEY (`idthietbi`);
 
 --
 -- Chỉ mục cho bảng `tieu_su`
@@ -436,7 +531,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `chung_minh_thu`
 --
 ALTER TABLE `chung_minh_thu`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT cho bảng `dinh_chinh`
@@ -449,6 +544,12 @@ ALTER TABLE `dinh_chinh`
 --
 ALTER TABLE `gia_dinh`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT cho bảng `hopdong`
+--
+ALTER TABLE `hopdong`
+  MODIFY `idhopdong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `ho_khau`
@@ -466,7 +567,13 @@ ALTER TABLE `khai_tu`
 -- AUTO_INCREMENT cho bảng `nhan_khau`
 --
 ALTER TABLE `nhan_khau`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT cho bảng `phong`
+--
+ALTER TABLE `phong`
+  MODIFY `idphong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tam_tru`
@@ -514,6 +621,12 @@ ALTER TABLE `dinh_chinh`
 --
 ALTER TABLE `gia_dinh`
   ADD CONSTRAINT `gia_dinh_ibfk_1` FOREIGN KEY (`idNhanKhau`) REFERENCES `nhan_khau` (`ID`);
+
+--
+-- Các ràng buộc cho bảng `hopdong`
+--
+ALTER TABLE `hopdong`
+  ADD CONSTRAINT `hopdong_ibfk_1` FOREIGN KEY (`idphong`) REFERENCES `phong` (`idphong`);
 
 --
 -- Các ràng buộc cho bảng `ho_khau`
