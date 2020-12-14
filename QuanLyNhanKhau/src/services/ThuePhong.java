@@ -140,7 +140,7 @@ public class ThuePhong {
     public List<Hop_dong> getAll() throws SQLException, ClassNotFoundException {
         List<Hop_dong> danhsachhopdong = new ArrayList<>();
         connection = MySQLConnection.getMysqlConnection();
-        String sql = "selected * from hopdong";
+        String sql = "select * from hopdong";
         statement = connection.createStatement();
         resultSet = statement.executeQuery(sql);
         while (resultSet.next()) {
