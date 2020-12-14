@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Hop_dong;
 import models.Phong;
+import Algothirm.Event;
 
 /**
  *
@@ -165,7 +166,7 @@ public class ThuePhong {
     
     public List<Event> danhsachhopdong() throws SQLException, ClassNotFoundException {
         List<Event> danhsachhopdong = new ArrayList<>();
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "select * from hopdong";
         statement = connection.createStatement();
         resultSet = statement.executeQuery(sql);
@@ -180,8 +181,4 @@ public class ThuePhong {
         return danhsachhopdong;
     }
     
-    
-    public static void main(String[] args) {
-        System.out.println("ahihihi");
-    }
 }
