@@ -30,7 +30,7 @@ public class ThuePhong {
 //  thêm hợp đồng
 
     public boolean addHopDong(Hop_dong hopdong) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "insert into hopdong(idhopdong,tenkhachhang,sodienthoai,diachi,soCMT,batdau,ketthuc"
                 + ",chiphi,datcoc,idphong,trangthai,thanhtoan) values(?,?,?,?,?,?,?,?,?,?,?,?)";
         
@@ -55,7 +55,7 @@ public class ThuePhong {
 //  thay đổi phòng
 
     public boolean updateHopDong(int idHopDong, int idPhong) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "update hopdong set idphong = ? where idhopdong = ?";
         
         preparedStatement = connection.prepareCall(sql);
@@ -71,7 +71,7 @@ public class ThuePhong {
 //  thay đổi thời gian thuê
 
     public boolean updateHopDong(int idHopDong, Timestamp batdau, Timestamp ketthuc) throws ClassNotFoundException, SQLException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "update hopdong set batdau = ? , ketthuc = ?  where idhopdong = ?";
         preparedStatement = connection.prepareCall(sql);
         preparedStatement.setTimestamp(1, batdau);
@@ -83,7 +83,7 @@ public class ThuePhong {
 //  kiểm tra hợp đồng có được chấp nhận hay không
 
     public boolean checkTrangThai(int idHopDong) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         Hop_dong hopdong;
         String sql = "select * from hopdong where idhopdong = ?";
 
@@ -112,7 +112,7 @@ public class ThuePhong {
 //  kiểm tra hợp đồng thanh toán hay chưa
 
     public boolean checkThanhToan(int idHopDong) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         Hop_dong hopdong;
         String sql = "select * from hopdong where idhopdong = ?";
         preparedStatement = connection.prepareCall(sql);
@@ -125,7 +125,7 @@ public class ThuePhong {
 //  xóa hợp đồng
 
     public boolean deleteHopDong(int idHopDong) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "delete from hopdong where idhopdong = ?";
         
         preparedStatement = connection.prepareCall(sql);
@@ -139,7 +139,7 @@ public class ThuePhong {
 
     public List<Hop_dong> getAll() throws SQLException, ClassNotFoundException {
         List<Hop_dong> danhsachhopdong = new ArrayList<>();
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "select * from hopdong";
         statement = connection.createStatement();
         resultSet = statement.executeQuery(sql);
@@ -161,5 +161,27 @@ public class ThuePhong {
         }
         return danhsachhopdong;
     }
-
+    
+    
+    public List<Event> danhsachhopdong() throws SQLException, ClassNotFoundException {
+        List<Event> danhsachhopdong = new ArrayList<>();
+        connection = MySQLConnection.getMysqlConnection();
+        String sql = "select * from hopdong";
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            Event event = new Event(
+                    resultSet.getTimestamp("batdau"),
+                    resultSet.getTimestamp("ketthuc"),
+                    resultSet.getInt("idphong")
+                    );
+            danhsachhopdong.add(event);
+        }
+        return danhsachhopdong;
+    }
+    
+    
+    public static void main(String[] args) {
+        System.out.println("ahihihi");
+    }
 }

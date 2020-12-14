@@ -32,7 +32,7 @@ public class PhongServices {
     public List<Phong> getAll() throws SQLException, ClassNotFoundException {
         List<Phong> danhsachPhong = new ArrayList<>();
 
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "select * from phong";
         statement = connection.createStatement();
         resultSet = statement.executeQuery(sql);
@@ -49,7 +49,7 @@ public class PhongServices {
     public List<Phong> danhsachphongtrong() throws SQLException, ClassNotFoundException {
         List<Phong> danhsachPhong = new ArrayList<>();
 
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
 
         String sql = "select * from phong where trangthai != 0";
 
@@ -67,7 +67,7 @@ public class PhongServices {
 //    kiểm tra phòng trống
     public boolean kiemtraphongtrong(int idphong) throws SQLException, ClassNotFoundException {
 
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
 
         String sql = "select * from phong where idphong = ?";
 
@@ -92,13 +92,13 @@ public class PhongServices {
     public void updatetrangthai(int idphong) throws SQLException, ClassNotFoundException {
         boolean t = kiemtraphongtrong(idphong);
         if(t){
-            connection = MySQLConnection.getMysqlConnection();
+            connection = MySQLConnection1.getMysqlConnection();
             String sql = "update phong set trangthai = 0 where idphong = ?";
             preparedStatement = connection.prepareCall(sql);
             preparedStatement.setInt(1, idphong);
             preparedStatement.execute();
         }else{
-            connection = MySQLConnection.getMysqlConnection();
+            connection = MySQLConnection1.getMysqlConnection();
             String sql = "update phong set trangthai = 1 where idphong = ?";
             preparedStatement = connection.prepareCall(sql);
             preparedStatement.setInt(1, idphong);

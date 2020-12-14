@@ -26,7 +26,7 @@ public class ThietBiService {
 //    thêm thiết bị vào nhà văn hóa
 
     public boolean themthietbi(Thiet_bi thietbi) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "insert into thietbi(idthietbi,tenthietbi,soluong,khadung,mota) values(?,?,?,?,?)";
         
         preparedStatement = connection.prepareCall(sql);
@@ -43,7 +43,7 @@ public class ThietBiService {
 //    điều chỉnh số lượng - updateSoLuong
 
     public boolean updateSoLuong(int soluong ,String idthietbi) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "update thietbi set soluong = ? where idthietbi = ?";
         
         preparedStatement = connection.prepareCall(sql);
@@ -59,7 +59,7 @@ public class ThietBiService {
 //    điều chỉnh khả dụng - update tính khả dung // loại bỏ những thiết bị hỏng
 
     public boolean updateKhaDung(int soluong ,String idthietbi) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "update thietbi set khadung = ? where idthietbi = ?";
         
         preparedStatement = connection.prepareCall(sql);
@@ -75,7 +75,7 @@ public class ThietBiService {
 //    xóa thiết bị khỏi CSDL của nhà văn hóa
 
     public boolean deleteThietBi(String idThietBi) throws SQLException, ClassNotFoundException {
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "delete from thietbi where idthietbi = ?";
         
         preparedStatement = connection.prepareCall(sql);
@@ -90,7 +90,7 @@ public class ThietBiService {
     public List<Thiet_bi> getAll() throws SQLException, ClassNotFoundException {
         List<Thiet_bi> danhsachthietbi = new ArrayList<>();
 
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "select * from thietbi";
 
         statement = connection.createStatement();
@@ -117,7 +117,7 @@ public class ThietBiService {
 
     public Thiet_bi findByidThietBi(String idThietBi) throws SQLException, ClassNotFoundException {
         Thiet_bi thiet_bi = new Thiet_bi();
-        connection = MySQLConnection.getMysqlConnection();
+        connection = MySQLConnection1.getMysqlConnection();
         String sql = "select * from thietbi where idthietbi = ?";
         
         
