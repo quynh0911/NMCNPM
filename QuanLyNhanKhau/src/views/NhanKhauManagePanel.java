@@ -1,6 +1,6 @@
 package views;
 
-import controllers.NhanKhauManagerPanelController;
+import controllers.QuanLyNhanKhau.NhanKhauManagerPanelController;
 import javax.swing.JFrame;
 import views.NhanKhauManagerFrame.AddNewPeopleJFrame;
 import views.NhanKhauManagerFrame.DangKyTamTruJFrame;

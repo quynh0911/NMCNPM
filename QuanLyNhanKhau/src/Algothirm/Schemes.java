@@ -6,11 +6,13 @@
 package Algothirm;
 import java.util.ArrayList;
 import java.util.List;
-import Algothirm.Event;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import models.Hop_dong;
-import services.ThuePhong;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import models.HopDong;
+import services.HoatDongService;
+//import services.ThuePhong;
 
 /**
  *
@@ -20,50 +22,58 @@ import services.ThuePhong;
 
 public class Schemes {
     
-    final int extra_time = 15*60;
+    final long extra_time = 15;
     
+     
     public static long getDistance(Timestamp time1, Timestamp time2){
         long distance = time1.getTime() - time2.getTime();
-        return distance;
+        return distance / 60000;
     }
     
-    public List<Event> danhsachhopdong() throws SQLException, ClassNotFoundException{
-        List<Event> list = new ThuePhong().danhsachhopdong();
+    public List<HopDong> danhsachhopdong() throws SQLException, ClassNotFoundException{
+        List<HopDong> list;
+        HoatDongService service = new HoatDongService();
+        list = service.getAll();
         return list;
     }
     
-    boolean is_not_over_lap(Event event1, Event event2){
-        if(event1.idPhong != event2.idPhong){
-            return true;
-        }
-        long distance1 = getDistance(event1.startTime , event2.endTime);
-        if(distance1 - extra_time > 0){
-            return true;
-        }
-        long distance2 = getDistance(event1.endTime, event2.startTime);
-        if(distance2 + extra_time <0){
-            return true;
-        }
-        return false;
-    }
     
-    public boolean add_event(Event new_event) throws SQLException, ClassNotFoundException{
-        List<Event> list_events = danhsachhopdong();
-        for (Event event: list_events){
-            if(is_not_over_lap(event, new_event)){
-            } else {
-                return false;
-            } 
+         
+         
+    boolean is_not_overlap(HopDong event1, HopDong event2){
+         if(event1.getIdPhong() != event2.getIdPhong()){
+            return true;
         }
-        list_events.add(new_event);
+        long distance1 = getDistance(event1.getStart() , event2.getEnd());
+        if(distance1 - extra_time < 0){
+            return false;
+        }
+        long distance2 = getDistance(event1.getEnd(), event2.getStart());
+        if(distance2 + extra_time > 0){
+            return false;
+        }
         return true;
     }
     
-    public static void main(String args[]) throws SQLException, ClassNotFoundException{
-        List<Event> events = new Schemes().danhsachhopdong();
-        for(Event e : events){
-            System.out.println(e);
-        }
+    
+    
+    
+    public boolean add_event(HopDong new_event) throws SQLException, ClassNotFoundException{
+        List<HopDong> list_events = danhsachhopdong();
+       // boolean kt = true;
+        for (HopDong event: list_events){
+            if(is_not_overlap(event, new_event)){
+            } else {
+               // kt = false;
+                JFrame frame = new JFrame("Thông báo");
+                JOptionPane.showMessageDialog(frame, "Thời gian bị trùng!","Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            } 
+        }        
+            HoatDongService hoatDongCanXet = new HoatDongService();
+            hoatDongCanXet.addHoatDong(new_event);
+            return true;
+    
     }
     
 }

@@ -1,6 +1,6 @@
 package views;
 
-import controllers.HomeCotroller;
+import controllers.QuanLyNhanKhau.HomeCotroller;
 
 /**
  *

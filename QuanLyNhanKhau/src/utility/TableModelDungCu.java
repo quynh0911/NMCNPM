@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uility;
+package utility;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +27,7 @@ public class TableModelDungCu {
                 return columnIndex == 3 ? Boolean.class : String.class;
             }
         };
-        tableModelDungCu.addColumn(listColumn1);
+        tableModelDungCu.setColumnIdentifiers(listColumn1);
         Object [] obj1;
         obj1 = new Object [numOfCols];
         danhSachDungCu.forEach((DungCuModel dungCu) -> {

@@ -15,7 +15,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.table.DefaultTableModel;
 import models.GiaDinhModel;
 import models.TieuSuModel;
-import utility.ClassTableModel;
+import utility.TableModelNhanKhau;
 import java.sql.Date;
 import java.util.Vector;
 
@@ -31,7 +31,7 @@ public class TieuSuController {
     private JPanel giaDinhJpn;
     private DefaultTableModel modelTieuSu;
     private DefaultTableModel modelGiaDinh;
-    private ClassTableModel classTableModel = null;
+    private TableModelNhanKhau classTableModel = null;
     private final String[] COLUMNS_TIEU_SU = {"Từ ngày", "Đến ngày", "Địa chỉ", "Nghề nghiệp", "Nơi làm việc"};
     private final String[] COLUMNS_GIA_DINH = {"Họ tên", "Năm Sinh", "Giới tính", "Quan hệ với nhân khẩu", "Nghề nghiệp", "Địa chỉ"};
 
@@ -39,7 +39,7 @@ public class TieuSuController {
         this.nhanKhauBean = nhanKhauBean;
         this.tieuSuJpn = tieuSuJpn;
         this.giaDinhJpn = giaDinhJpn;
-        this.classTableModel = new ClassTableModel();
+        this.classTableModel = new TableModelNhanKhau();
     }
 
     

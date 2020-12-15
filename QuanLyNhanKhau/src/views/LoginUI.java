@@ -1,12 +1,13 @@
 package views;
 
-import controllers.LoginController;
+import controllers.QuanLyNhanKhau.LoginController;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import views.QuanLyNVH.MainFrameCB;
 
 /**
  *
@@ -15,6 +16,7 @@ import javax.swing.SwingUtilities;
 public class LoginUI extends javax.swing.JFrame {
     
     private LoginController cont = new  LoginController();
+
     
     public LoginUI() {
         initComponents();
@@ -43,14 +45,20 @@ public class LoginUI extends javax.swing.JFrame {
         String userName = txbUserName.getText();
         String password = String.valueOf(txbPasswd.getPassword());
         try {
-            if (this.cont.login(userName, password)) {
-                dispose();
-                MainFrame mainFrame = new MainFrame();
-                mainFrame.setLocationRelativeTo(null);
-                mainFrame.setResizable(false);
-                mainFrame.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Sai thong tin dang nhap", "Warning", JOptionPane.WARNING_MESSAGE);
+            switch(this.cont.login(userName, password)){
+                case 0: JOptionPane.showMessageDialog(rootPane, "Sai thong tin dang nhap", "Warning", JOptionPane.WARNING_MESSAGE); break;
+                case 1: dispose();
+                        MainFrameTT mainFrameTT = new MainFrameTT();
+                        mainFrameTT.setLocationRelativeTo(null);
+                        mainFrameTT.setResizable(false);
+                        mainFrameTT.setVisible(true);
+                        break;
+                case 2: dispose();
+                        views.QuanLyNVH.MainFrameCB mainFrameCB = new MainFrameCB();
+                        mainFrameCB.setLocationRelativeTo(null);
+                        mainFrameCB.setResizable(false);
+                        mainFrameCB.setVisible(true);
+                        break;
             }
         } catch (SQLException | ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra!! Vui lòng kiểm tra lại!", "Warning!!", JOptionPane.ERROR_MESSAGE);

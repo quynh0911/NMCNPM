@@ -5,7 +5,7 @@
  */
 package views;
 
-import controllers.HoKhauPanelController;
+import controllers.QuanLyNhanKhau.HoKhauPanelController;
 import javax.swing.JFrame;
 import views.HoKhauManagerFrame.ChuyenDiNoiKhac;
 import views.HoKhauManagerFrame.TachHoKhau;

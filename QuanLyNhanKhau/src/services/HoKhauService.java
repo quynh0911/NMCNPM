@@ -1,7 +1,7 @@
 package services;
 
 import Bean.HoKhauBean;
-import controllers.LoginController;
+import controllers.QuanLyNhanKhau.LoginController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

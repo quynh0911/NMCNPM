@@ -1,6 +1,6 @@
 package views;
 
-import controllers.ThongKePanelController;
+import controllers.QuanLyNhanKhau.ThongKePanelController;
 import javax.swing.JFrame;
 
 /**

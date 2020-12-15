@@ -1,9 +1,9 @@
 package views.NhanKhauManagerFrame;
 
 import Bean.NhanKhauBean;
-import controllers.LoginController;
+import controllers.QuanLyNhanKhau.LoginController;
 import controllers.NhanKhauManagerController.AddNewController;
-import controllers.NhanKhauManagerPanelController;
+import controllers.QuanLyNhanKhau.NhanKhauManagerPanelController;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;

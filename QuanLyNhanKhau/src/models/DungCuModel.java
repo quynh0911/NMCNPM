@@ -55,5 +55,7 @@ public class DungCuModel {
     public void setMoTa(String moTa) {
         this.moTa = moTa;
     }
+
+   
     
 }
